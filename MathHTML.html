@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квадратные уравнения</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #383838;
+        }
+
+        .calculator {
+            background-color: #797979;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        .calculator h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .calculator input[type="number"] {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #0004ff;
+            border-radius: 5px;
+            font-size: 18px;
+            padding: 0 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .calculator button {
+            width: 100%;
+            height: 40px;
+            background-color: #29d4ff;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .calculator button:hover {
+            background-color: #00fff2;
+        }
+
+        .calculator .result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Квадратные уравнения</h1>
+        <input type="number" id="a" placeholder="a" step="1">
+        <input type="number" id="b" placeholder="b" step="1">
+        <input type="number" id="c" placeholder="c" step="1">
+        <button onclick="calculateQuadratic()">Calculate</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateQuadratic() {
+            const a = document.getElementById("a").value;
+            const b = document.getElementById("b").value;
+            const c = document.getElementById("c").value;
+            const discriminant = b * b - 4 * a * c;
+
+            if (discriminant > 0) {
+                const sqrt_val = Math.sqrt(discriminant);
+                const root1 = (-b + sqrt_val) / (2 * a);
+                const root2 = (-b - sqrt_val) / (2 * a);
+
+                document.getElementById("result").innerText =
+                    "Корни есть и они разные: \nX1 = " +
+                    root1.toFixed(2) +
+                    ", X2 = " +
+                    root2.toFixed(2);
+            } else if (discriminant === 0) {
+                const root1 = -b / (2 * a);
+
+                document.getElementById("result").innerText =
+                    "Корень один: \nX1 = X2 = " + root1.toFixed(2);
+            } else {
+                const realPart = -b / (2 * a);
+                const imaginaryPart = Math.sqrt(-discriminant) / (2 * a);
+
+                document.getElementById("result").innerText =
+                    "Корней нет"
+                    
+            }
+        }
+    </script>
+</body>
+</html>
